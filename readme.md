@@ -1,0 +1,2 @@
+Hash: Bcrypt
+Authentication: JWT
