@@ -1,5 +1,7 @@
 const usuariosControlador = require('./usuarios-controlador');
 
+const passport = require('passport');
+
 module.exports = app => {
   app
     .route('/usuario')
@@ -7,4 +9,9 @@ module.exports = app => {
     .get(usuariosControlador.lista);
 
   app.route('/usuario/:id').delete(usuariosControlador.deleta);
+
+  app.route('/usuario/login').post(
+    passport.authenticate('local', {session: false}), 
+    usuariosControlador.login
+  );
 };

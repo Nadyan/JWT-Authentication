@@ -1,0 +1,23 @@
+Módulos utilizados para autenticação:
+
+"bcrypt": "^5.0.1",
+"passport": "^0.5.2",
+"passport-local": "^1.0.0"
+
+Partes da api que é autenticação:
+
+- usuarios-modelo.js:
+      static gerarSenhaHash(senha)
+      async adicionaSenha(senha)
+
+- usuarios-controlador.js:
+      login
+
+- usuarios-rotas.js:
+      /usuario/login
+
+- estrategias-autenticacao.js
+
+- usuarios/index.js
+
+- app.js
