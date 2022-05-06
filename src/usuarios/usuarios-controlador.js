@@ -1,5 +1,16 @@
 const Usuario = require('./usuarios-modelo');
 const { InvalidArgumentError, InternalServerError } = require('../erros');
+const jwt = require('jsonwebtoken');
+
+function criaTokenJWT(usuario) {
+  const payload = {
+    id: usuario.id
+  };
+
+  const token = jwt.sign(payload, 'senha-secreta');
+  
+  return token;
+}
 
 module.exports = {
   adiciona: async (req, res) => {
@@ -27,7 +38,11 @@ module.exports = {
   },
 
   login: (req, res) => {
-    res.status(204).send();
+    const token = criaTokenJWT(req.user);
+    /*passport insere o req.user na autenticacao*/
+
+    res.set('Authorization', token);
+    res.status(204).send(); // 204 diz que os cabeçalhos possuem informações úteis (token)
   },
 
   lista: async (req, res) => {
