@@ -7,9 +7,9 @@ function criaTokenJWT(usuario) {
   const payload = {
     id: usuario.id
   };
-  const senha = crypto.randomBytes(256).toString('base64');
-  const token = jwt.sign(payload, senha);
-  
+  //const senha = crypto.randomBytes(256).toString('base64');
+  const token = jwt.sign(payload, process.env.CHAVE_JWT);
+  console.log(process.env.CHAVE_JWT);
   return token;
 }
 
